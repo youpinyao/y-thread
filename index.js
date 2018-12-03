@@ -1,6 +1,6 @@
-let yWorker = null
-const supportWorker = !!window.Worker
-const caches = {}
+let yWorker = null;
+const supportWorker = !!window.Worker;
+const caches = {};
 
 const uuid = () => {
   const s = [];
@@ -18,7 +18,7 @@ const uuid = () => {
 }
 
 if (supportWorker) {
-  yWorker = new window.Worker('y-thread-worker.js')
+  yWorker = new window.Worker('y-thread-worker.js');
 
   yWorker.onmessage = (e) => {
     const {
@@ -30,12 +30,12 @@ if (supportWorker) {
 
     if (cache) {
       if (success) {
-        cache.resolve(data)
+        cache.resolve(data);
       } else {
-        cache.reject(e.data.error)
+        cache.reject(e.data.error);
       }
     }
-    delete caches[uid]
+    delete caches[uid];
   }
 }
 
@@ -52,11 +52,11 @@ var yThread = {
       resolve,
       reject,
       fn
-    }
+    };
     yWorker.postMessage({
       uid,
       fn: '(' + fn.toString() + ')()',
-    })
+    });
   }),
   worker: yWorker,
 }
