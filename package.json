@@ -1,0 +1,23 @@
+{
+  "name": "y-thread",
+  "version": "0.0.1",
+  "description": "run a thread with worker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youpinyao/y-thread.git"
+  },
+  "keywords": [
+    "worker",
+    "thread"
+  ],
+  "author": "youpinyao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youpinyao/y-thread/issues"
+  },
+  "homepage": "https://github.com/youpinyao/y-thread#readme"
+}
