@@ -40,7 +40,7 @@ if (supportWorker) {
 }
 
 var yThread = {
-  thread: fn => new Promise((resolve, reject) => {
+  thread: (fn, data) => new Promise((resolve, reject) => {
     // 如果不支持
     if (!supportWorker) {
       resolve(fn());
@@ -48,6 +48,7 @@ var yThread = {
     }
 
     const uid = uuid();
+
     caches[uid] = {
       resolve,
       reject,
@@ -55,7 +56,8 @@ var yThread = {
     };
     yWorker.postMessage({
       uid,
-      fn: '(' + fn.toString() + ')()',
+      fn: `(${fn.toString()})`,
+      data,
     });
   }),
   worker: yWorker,
