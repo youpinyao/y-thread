@@ -6,13 +6,13 @@ onmessage = function (e) {
     postMessage({
       success: true,
       uid: uid,
-      data: fn(),
+      data: eval(fn),
     });
   } catch (error) {
     postMessage({
       success: false,
       uid: uid,
-      error: error,
+      error: error.message,
     });
   }
 }
