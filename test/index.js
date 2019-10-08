@@ -2,14 +2,22 @@ import {
   thread
 } from '../index';
 
-thread(function () {
-  return 1
-}).then(data => console.log(data))
+console.log('---------------', +new Date());
 
 thread(function () {
-  return 2
+  return Array(30000000).fill(2).reduce((a, b) => a + b);
 }).then(data => console.log(data))
 
+console.log('---------------', +new Date());
+
 thread(function () {
-  return 3
+  return +new Date();
 }).then(data => console.log(data))
+
+console.log('---------------', +new Date());
+
+thread(function () {
+  return +new Date();
+}).then(data => console.log(data))
+
+console.log('---------------', +new Date());
