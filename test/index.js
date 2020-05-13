@@ -2,22 +2,26 @@ import {
   thread
 } from '../index';
 
-console.log('---------------', +new Date());
+const startTime = +new Date();
 
-thread(function () {
-  return Array(30000000).fill(2).reduce((a, b) => a + b);
-}).then(data => console.log(data))
+let startAt = +new Date();
 
-console.log('---------------', +new Date());
+const timer = setInterval(() => {
+  console.log(+new Date() - startAt);
+  startAt = +new Date()
+}, 100);
 
-thread(function () {
-  return +new Date();
-}).then(data => console.log(data))
+const cal = function (data) {
+  return Array(30000000).fill(2).reduce((a, b) => a + b) + data.a;
+};
 
-console.log('---------------', +new Date());
+// cal({ a: 666 });
+// clearInterval(timer);
+// console.log(thread, startTime);
 
-thread(function () {
-  return +new Date();
-}).then(data => console.log(data))
-
-console.log('---------------', +new Date());
+thread(cal, {
+  a: 666,
+}).then(data => {
+  console.log(data, `${+new Date() - startTime}ms`);
+  clearInterval(timer);
+}).catch(err => console.error(err));

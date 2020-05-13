@@ -21,5 +21,5 @@ run a child thread with worker
   }).then((data) => {
     console.log(data);
   })
-  // => log 1;
+  // => {a: 1};
 ```
